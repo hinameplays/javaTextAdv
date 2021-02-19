@@ -19,6 +19,10 @@ public class __init__ {
     private static File makeFile(String name, Data d) {
         try {
 
+            File theDir = new File(System.getProperty("user.dir")+"\\java_cache\\");
+            if (!theDir.exists()){
+                theDir.mkdirs();
+            }
             File file = new File(System.getProperty("user.dir")+"\\java_cache\\"+name);
             if (file.createNewFile()) System.out.println("File created");
             FileWriter w = new FileWriter(file);
