@@ -1,30 +1,24 @@
-package render;
+import render.Data;
 
 import java.io.File;
 import java.io.FileWriter;
 
 public class __init__ {
-    static Engine e;
-    static public Boolean initialise() {
+    
+    public static Boolean initialise() {
         try {
             Data d = new Data(new String("@echo off\njavac \".\\game\\Main.java\"\njava \".\\game\\Main.java\""));
             File f = makeFile("init.bat", d);
             runBat(f);
-            e = new Engine();
             return true;
         } catch (Exception e) {
             return false;
         }
-    } 
-
-    public void renderImage() {
-        e.render();
     }
 
     private static File makeFile(String name, Data d) {
         try {
 
-            
             File file = new File(System.getProperty("user.dir")+"\\java_cache\\"+name);
             if (file.createNewFile()) System.out.println("File created");
             FileWriter w = new FileWriter(file);
@@ -42,7 +36,12 @@ public class __init__ {
             Process p = Runtime.getRuntime().exec("cmd /c start "+file.getAbsolutePath());
             p.waitFor(); 
         } catch (Exception e) {
+            System.out.println("Execution failed. Trace:\n"+e);
         }
         
+    }
+
+    public static void main(String[] args) {
+        initialise();
     }
 }
