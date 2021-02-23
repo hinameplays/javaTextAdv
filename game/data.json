@@ -1,0 +1,21 @@
+{
+    "Orte": [
+        {
+            "id": "0",
+            "name": "Start",
+            "content": "abc",
+            "links": [
+                "1"
+            ]
+        },
+        {
+            "id": "1",
+            "name": "Ziel",
+            "content": "abc",
+            "links": [
+                "1"
+            ]
+        }
+    ]
+
+}

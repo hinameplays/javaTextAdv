@@ -1,4 +1,5 @@
 import render.Data;
+import render.Frame;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -7,7 +8,7 @@ public class __init__ {
     
     public static Boolean initialise() {
         try {
-            Data d = new Data(new String("@echo off\njavac \".\\game\\Main.java\"\njava \".\\game\\Main.java\""));
+            Data d = new Data(new String("@echo off\ncolor 07\nmode con: cols=160 lines=40\ntitle=\"Java Adventure\"\njavac \".\\game\\Main.java\"\njava \".\\game\\Main.java\""));
             File f = makeFile("init.bat", d);
             runBat(f);
             return true;
@@ -18,6 +19,7 @@ public class __init__ {
 
     private static File makeFile(String name, Data d) {
         try {
+            Frame u = new Frame(20,20);
 
             File theDir = new File(System.getProperty("user.dir")+"\\java_cache\\");
             if (!theDir.exists()){
@@ -42,6 +44,10 @@ public class __init__ {
         } catch (Exception e) {
             System.out.println("Execution failed. Trace:\n"+e);
         }
+        
+    }
+
+    public static void generateDB() {
         
     }
 
