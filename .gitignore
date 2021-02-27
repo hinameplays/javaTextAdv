@@ -1,2 +1,2 @@
 *.class
-java_cache/*
+java_cache/init.bat

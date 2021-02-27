@@ -1,4 +1,4 @@
-package render;
+package game.lib_custom;
 
 import java.awt.image.BufferedImage;
 

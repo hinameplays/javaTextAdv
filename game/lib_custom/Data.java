@@ -1,4 +1,4 @@
-package render;
+package game.lib_custom;
 
 public class Data {
     private Object data;
@@ -13,5 +13,5 @@ public class Data {
     
     public void setData(Object object) {
         this.data = object;
-    }
+    } 
 }
