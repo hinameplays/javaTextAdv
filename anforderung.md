@@ -29,6 +29,8 @@ Schaffen eines in der Konsole laufenden ("Text-") Adventures mithilfe von Java. 
 
 ### Erweiterungen
 
+- content aus datei lesen + savegames
+
 - Parser
 
 - commands (as in man; help; $)  
