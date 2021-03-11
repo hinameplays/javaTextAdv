@@ -15,15 +15,15 @@ Schaffen eines in der Konsole laufenden ("Text-") Adventures mithilfe von Java. 
 
 ### unabdingbare Pflichten / Anforderungen  
 
-- Spiel muss funktionales Ziel haben (Win Condition)
+- Spiel muss funktionales Ziel haben  (Win Condition) (done)
 
-- eine funktionale Progression muss existieren  
+- eine funktionale Progression muss existieren  (überarbeitbar)
 
   - verknüpfte Orte
 
   - Quests
 
-- Spiel muss intuitiv erschließbar sein
+- Spiel muss intuitiv erschließbar sein  (yeah no)
 
   - einfach nicht zu kompliziert machen
 
