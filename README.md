@@ -8,3 +8,5 @@ Because I have Visual Studio setup under Win10, I can only support it there for 
 Also there is some batch tomfuckery going on, so yeah  
 
 **Aktuell ist bereits ein Grundgerüst des Spiels implementiert. Die Anforderungsanalyse wurde auch nachgeholt. Nun werden mit der Zeit die beschriebenen Features implementiert. Aktuell ist nur Main.java (und Referenzen) relevant, die Entry-Datei wird noch nicht genutzt.**
+
+Json-Library modified from https://github.com/stleary/JSON-java

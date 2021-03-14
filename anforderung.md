@@ -4,10 +4,18 @@
 
 |No| Ziel | Status|
 ---|---|---
-1|Gesamt|nicht erreicht|
+1|Ziel/Gesamte Roadmap|nicht erreicht|
 2|unabdingbare Pflichten|erreicht|
 3|Erweiterungen|nicht erreicht|
 4|Zusatzfeatures (nice-to-have)|nicht implementiert|  
+
+## **Roadmap**
+
+|No| Ziel | Status|
+---|---|---
+1|Implementation der Base-Features vom AB| Done
+2|Implementation einer JSON-Klasse| Pending
+3|
 
 ### **Ziel**
 
@@ -29,7 +37,7 @@ Schaffen eines in der Konsole laufenden ("Text-") Adventures mithilfe von Java. 
 
 ### Erweiterungen
 
-- content aus datei lesen + savegames
+- content aus datei lesen + Savegames
 
 - Parser
 
@@ -39,12 +47,12 @@ Schaffen eines in der Konsole laufenden ("Text-") Adventures mithilfe von Java. 
 
 ### nice-to-have
 
-(*Wird wahscheinlich nicht passieren, ist aber anmerkenswert*)  
+(*Wird wahrscheinlich nicht passieren, ist aber bemerkenswert*)  
 
-- UI in textinterface (Grafikoutput über basically Asci-Art)
+- UI in Textinterface (Grafikoutput über basically Ascii-Art)
 
 - gute Story :P
 
 - minimap
 
-- intel- & inventarsystem  
+- intel & inventory system  
