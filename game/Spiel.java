@@ -2,6 +2,8 @@ package game;
 
 import java.util.Scanner;
 
+import game.lib_custom.json.JSONArray;
+
 public class Spiel {
     Ort start, ziel;
     Spieler s;
@@ -9,10 +11,8 @@ public class Spiel {
 
     public Spiel() {
         
-        Ort[] Orte = {new Ort("No1","b"), new Ort("No2", "B")};
-        Orte[0].baueWeg("oben", Orte[1]);
-        start = Orte[0];
-        ziel = Orte[1];
+        Ort[] Orte = readLocations();
+
         s = new Spieler(start);
         
     }
@@ -29,4 +29,11 @@ public class Spiel {
         System.out.println("Gz; du bist am Ziel!");
         sc.close();
     }
+
+    public Ort[] readLocations() {
+        JSONArray j = new;
+        
+        return out;
+    }
+    
 }

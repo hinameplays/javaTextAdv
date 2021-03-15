@@ -1,6 +1,7 @@
 package game.lib_custom.Render;
 // @Referencing https://www.shadertoy.com/view/4ll3RB
 // original in microsoft java
+// alt: https://www.shadertoy.com/view/lssGDj
 
 /*
 // referenced the method of bitmap of iq : https://www.shadertoy.com/view/4dfXWj
