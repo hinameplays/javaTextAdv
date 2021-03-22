@@ -1,21 +1,40 @@
 {
-    "Orte": [
+    "locations": [
         {
-            "id": "0",
-            "name": "Start",
-            "content": "abc",
-            "links": [
-                "1"
-            ]
+            "name": "No1",
+            "id": 1,
+            "isStart": true,
+            "beschreibung": "b",
+            "items": [
+                null,
+                null,
+                null
+            ],
+            "isGoal": false,
+            "o": 2
         },
         {
-            "id": "1",
-            "name": "Ziel",
-            "content": "abc",
-            "links": [
-                "1"
-            ]
+            "u": 1,
+            "name": "No2",
+            "id": 2,
+            "isStart": false,
+            "beschreibung": "B",
+            "items": [
+                null,
+                null,
+                null
+            ],
+            "isGoal": true
         }
-    ]
-
+    ],
+    "player": {
+        "location": 2,
+        "items": [
+            null,
+            null,
+            null,
+            null,
+            null
+        ]
+    }
 }

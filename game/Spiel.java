@@ -11,7 +11,7 @@ public class Spiel {
     Ort start, ziel;
     Ort[] Orte;
     Spieler s;
-    static final String dataPath = "data.json";
+    static final String dataPath = "game\\data.json";
     static Boolean closeable;
     
 
@@ -66,6 +66,7 @@ public class Spiel {
 
             for (Ort o: Orte) {
                 JSONObject temp = new JSONObject(o);
+                temp.put("id", o.id);
                 temp.put("name", o.name);
                 temp.put("beschreibung", o.beschreibung);
                 temp.put("l", (o.l != null ? o.l.id : null));
@@ -82,11 +83,15 @@ public class Spiel {
 
             JSONObject player = new JSONObject();
 
-            player.put("location", Spieler.ort);
             Item[] t = Spieler.items;
+            player.put("location", (Spieler.ort != null ? Spieler.ort.id : null));
             player.put("items", new JSONArray(t));
+            
+            JSONObject spiel = new JSONObject();
+            spiel.put("player", player);
+            spiel.put("locations", locations);
 
-            locations.write(file, 4, 0);
+            spiel.write(file, 4, 0);
 
             file.flush();
             file.close();
