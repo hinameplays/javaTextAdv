@@ -3,6 +3,7 @@ package game;
 public class Spieler {
     
     public static Ort ort;
+    public static Item[] items = new Item[5];
 
     public Spieler(Ort start) {
         ort = start;
@@ -19,6 +20,15 @@ public class Spieler {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public static boolean hasItem(Item i) {
+        for (Item z : items) {
+            if(z == i) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

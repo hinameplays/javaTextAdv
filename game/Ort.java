@@ -3,10 +3,18 @@ package game;
 public class Ort {
     String name, beschreibung;
     Ort l,r,o,u;
+    Boolean isGoal, isStart;
+    Item Item1, Item2, Item3;
+    int id;
 
-    public Ort (String n, String b) {
+    public Ort (String n, String b, Boolean g, Boolean s, int i) {
         this.name = n;
         this.beschreibung = b;
+
+        this.isGoal = g;
+        this.isStart = s;
+
+        id = i;
     }
 
     public void baueWeg(String richtung, Ort or) {
