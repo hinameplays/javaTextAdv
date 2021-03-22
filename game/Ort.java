@@ -7,7 +7,7 @@ public class Ort {
     Item Item1, Item2, Item3;
     int id;
 
-    public Ort (String n, String b, Boolean g, Boolean s, int i) {
+    public Ort (String n, String b, Boolean s, Boolean g, int i) {
         this.name = n;
         this.beschreibung = b;
 

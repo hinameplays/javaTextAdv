@@ -1,17 +1,21 @@
 package game;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 import game.lib_custom.json.JSONArray;
 import game.lib_custom.json.JSONObject;
-import game.lib_custom.json.JSONWriter;
+import game.lib_custom.json.JSONTokener;
 
 public class Spiel {
     Ort start, ziel;
     Ort[] Orte;
     Spieler s;
-    static final String dataPath = "game\\data.json";
+    static File initPath = new File("game\\init.json");
+    static File savePath = new File("game\\data.json");
     static Boolean closeable;
     
 
@@ -25,7 +29,7 @@ public class Spiel {
         start = Orte[0];
         ziel = Orte[1];
 
-        this.save();
+        this.rebuild();
 
         s = new Spieler(start);
         closeable = false;
@@ -47,20 +51,48 @@ public class Spiel {
         sc.close();
     }
 
-    public static void rebuild() {
-
-        ortBuild();
+    public Ort getById(int id) {
+        for (Ort o : Orte) {
+            if (o.id == id) return o;
+        }
+        return null;
     }
 
-    public static void ortBuild() {
+    public void rebuild() {
+        
+        FileReader inputStream;
+        try {
+            inputStream = new FileReader(savePath);
+            JSONTokener x = new JSONTokener(inputStream);
+            JSONObject spiel = new JSONObject(x);
 
+            JSONArray locations = new JSONArray(spiel.get("locations").toString());
+
+            Orte = new Ort[locations.length()];
+
+            for (int i = 0; i<locations.length(); i++) {
+                JSONObject temp = new JSONObject(locations.get(i).toString());
+                Ort ort = new Ort(temp.getString("beschreibung"), temp.getString("name"), temp.getBoolean("isStart"), temp.getBoolean("isGoal"), temp.getInt("id"));
+                
+                Orte[i] = ort;
+            }
+
+            JSONObject player = new JSONObject(spiel.get("player").toString());
+            s = new Spieler(getById(player.getInt("location"))); 
+
+            inputStream.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
     }
 
     public void save() {
         FileWriter file;
 
         try {
-            file = new FileWriter(dataPath);
+            file = new FileWriter(savePath);
 
             JSONArray locations = new JSONArray();
 
