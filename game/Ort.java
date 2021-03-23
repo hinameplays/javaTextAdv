@@ -3,11 +3,11 @@ package game;
 public class Ort {
     String name, beschreibung;
     Ort l,r,o,u;
-    Boolean isGoal, isStart;
-    Item Item1, Item2, Item3;
+    Boolean isGoal, isStart, isLocked;
+    Item Item1, Item2, Item3, UnlockItem;
     int id;
 
-    public Ort (String n, String b, Boolean s, Boolean g, int i) {
+    public Ort (String n, String b, Boolean s, Boolean g, Boolean l, int i) {
         this.name = n;
         this.beschreibung = b;
 

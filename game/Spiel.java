@@ -13,6 +13,7 @@ import game.lib_custom.json.JSONTokener;
 public class Spiel {
     Ort start, ziel;
     Ort[] Orte;
+    Item[] items;
     Spieler s;
     static File initPath = new File("game\\init.json");
     static File savePath = new File("game\\data.json");
@@ -21,24 +22,20 @@ public class Spiel {
 
     public Spiel() {
 
-        Ort[] temp = { new Ort("No1", "b", false, true, 1), new Ort("No2", "B", true, false, 2) }; //initialiser-declaration umgehen
-        Orte = temp;
+        if (savePath.exists()) {
+            this.rebuild(savePath);
+        } else {
+            this.rebuild(initPath);
+        }
 
-
-        Orte[0].baueWeg("oben", Orte[1]);
-        start = Orte[0];
-        ziel = Orte[1];
-
-        this.rebuild();
-
-        s = new Spieler(start);
         closeable = false;
-
 
     }
 
     public void spielen() {
+
         Scanner sc = new Scanner(System.in);
+
         while (s.ort != ziel) {
             System.out.println("Du befindest dich hier: " + s.ort.name);
             System.out.println("Wohin möchtest du gehen?");
@@ -46,23 +43,36 @@ public class Spiel {
                 System.out.println("Ungültige Eingabe, bitte wiederholen.");
             }
         }
+
         this.save();
         System.out.println("Gz; du bist am Ziel!");
         sc.close();
+
     }
 
-    public Ort getById(int id) {
+    public Ort getOrtById(int id) {
+        
         for (Ort o : Orte) {
             if (o.id == id) return o;
         }
         return null;
+        
     }
 
-    public void rebuild() {
+    public Item getItemById(int id) {
+        
+        for (Item i : items) {
+            if (i.id == id) return i;
+        }
+        return null;
+        
+    }
+
+    public void rebuild(File f) {
         
         FileReader inputStream;
         try {
-            inputStream = new FileReader(savePath);
+            inputStream = new FileReader(f);
             JSONTokener x = new JSONTokener(inputStream);
             JSONObject spiel = new JSONObject(x);
 
@@ -72,13 +82,13 @@ public class Spiel {
 
             for (int i = 0; i<locations.length(); i++) {
                 JSONObject temp = new JSONObject(locations.get(i).toString());
-                Ort ort = new Ort(temp.getString("beschreibung"), temp.getString("name"), temp.getBoolean("isStart"), temp.getBoolean("isGoal"), temp.getInt("id"));
+                Ort ort = new Ort(temp.getString("beschreibung"), temp.getString("name"), temp.getBoolean("isStart"), temp.getBoolean("isGoal"), temp.getBoolean("isLocked"), temp.getInt("id"));
                 
                 Orte[i] = ort;
             }
 
             JSONObject player = new JSONObject(spiel.get("player").toString());
-            s = new Spieler(getById(player.getInt("location"))); 
+            s = new Spieler(getOrtById(player.getInt("location"))); 
 
             inputStream.close();
 
@@ -107,7 +117,8 @@ public class Spiel {
                 temp.put("u", (o.u != null ? o.u.id : null));
                 temp.put("isStart", o.isStart);
                 temp.put("isGoal", o.isGoal);
-                Object[] t = {o.Item1, o.Item2, o.Item3};
+                temp.put("isLocked", o.isLocked);
+                int[] t = {o.Item1 != null ? o.Item1.id : null, o.Item2 != null ? o.Item2.id : null, o.Item3 != null ? o.Item3.id : null,o.UnlockItem != null ? o.UnlockItem.id : null};
                 temp.put("items", new JSONArray(t));
 
                 locations.put(temp);                
