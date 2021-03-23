@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Spieler {
     
-    public static Ort ort;
+    public Ort ort;
     public Item[] items = new Item[5];
 
     public Spieler(Ort start) {
@@ -22,7 +22,7 @@ public class Spieler {
                         ort = o;
                         return true;
                     } else {
-                        System.out.println("Leider fehlt dir noch "+o.UnlockItem.name+" um diesen Ort zu entsperren. Du kannst also nicht hierhin gehen.");
+                        System.out.println("Leider fehlt dir noch das Item '"+o.UnlockItem.name+"' um diesen Ort zu entsperren. Du kannst also nicht hierhin gehen.");
                         return false;
                     }
                 } else {
@@ -44,16 +44,27 @@ public class Spieler {
         return false;
     }
 
+    public void printInventory() {
+        System.out.println("Dein Inventar:");
+        System.out.println("1: "+ (items[0] != null ? items[0].name : "Nichts"));
+        System.out.println("2: "+ (items[1] != null ? items[1].name : "Nichts"));
+        System.out.println("3: "+ (items[2] != null ? items[2].name : "Nichts"));
+        System.out.println("4: "+ (items[3] != null ? items[3].name : "Nichts"));
+        System.out.println("5: "+ (items[4] != null ? items[4].name : "Nichts")+"\n");
+    }
+
     public void give(Item j) {
+
         for (int i=0; i<items.length; i++) {
-            if (items[i] != null) {
+            if (items[i] == null) {
                 items[i] = j;
                 return;
             }
         }
 
         System.out.println("Es existiert kein freier Inventarplatz. Wähle den Inventarplatz zum Tauschen oder drücke Alternativ [Enter] oder irgendetwas anderes als Eingabe.");
-        System.out.println("Item 1: "+items[0].name+"\nItem 2: "+items[1].name+"\nItem 3: "+items[2].name+"\nItem 4: "+items[3].name+"\nItem 5: "+items[4].name);
+        this.printInventory();
+
         Scanner sc = new Scanner(System.in);
         switch (sc.next()) {
             case "1":
@@ -91,7 +102,7 @@ public class Spieler {
 
     public void remove(int id) {
         for (int i=0; i<items.length; i++) {
-            if (items[i].id == id) items[i] = null;
+            if (items[i] != null && items[i].id == id) items[i] = null;
         }
     }
 
