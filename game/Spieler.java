@@ -52,7 +52,7 @@ public class Spieler {
             }
         }
 
-        System.out.println("Es existiert kein freier Inventarplatz. Wähle den Inventarplatz zum Tauschen oder drücke Alternativ [Enter].");
+        System.out.println("Es existiert kein freier Inventarplatz. Wähle den Inventarplatz zum Tauschen oder drücke Alternativ [Enter] oder irgendetwas anderes als Eingabe.");
         System.out.println("Item 1: "+items[0].name+"\nItem 2: "+items[1].name+"\nItem 3: "+items[2].name+"\nItem 4: "+items[3].name+"\nItem 5: "+items[4].name);
         Scanner sc = new Scanner(System.in);
         switch (sc.next()) {
@@ -85,6 +85,7 @@ public class Spieler {
                 sc.close();
                 return;
         }
+        sc.close();
 
     }
 

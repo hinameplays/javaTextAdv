@@ -30,22 +30,64 @@ public class Spiel {
 
     }
 
-    public void spielen() { // TODO rework spielen method
+    public void spielen() { 
 
         Scanner sc = new Scanner(System.in);
+        Boolean save = true;
 
         while (s.ort != ziel) {
-            System.out.println("Du befindest dich hier: " + s.ort.name);
-            System.out.println("Wohin möchtest du gehen?");
-            while (!s.gehe(sc.next())) {
-                System.out.println("Ungültige Eingabe, bitte wiederholen.");
+
+            if (save) save();
+            save = !save;
+
+            System.out.println("Du befindest dich hier: "+ s.ort.name);
+            System.out.println(s.ort.beschreibung+"\n");
+            System.out.println("Hier gibt es folgende Items:");
+            System.out.println(s.ort.Item1 != null ? s.ort.Item1.name : "Nichts");
+            System.out.println(s.ort.Item2 != null ? s.ort.Item2.name : "Nichts");
+            System.out.println(s.ort.Item3 != null ? s.ort.Item3.name : "Nichts"+"\n");
+            System.out.println("Was möchtest du jetzt tun?\n");
+
+            String in = sc.next();
+            switch (in) {
+                case "exit", "Exit", "e", "E":
+                    this.save();
+                    return;
+                case "save", "Save", "s", "S":
+                    this.save();
+                    break;
+                case "items", "list", "l", "i":
+                    System.out.println("Dein Inventar: \nItem 1: "+s.items[0].name+"\nItem 2: "+s.items[1].name+"\nItem 3: "+s.items[2].name+"\nItem 4: "+s.items[3].name+"\nItem 5: "+s.items[4].name+"\n");
+                    break;
+                case "help", "h", "/help", "/h", "Help", "H", "Hilfe":
+                    System.out.println("Liste der möglichen Befehle:\n");
+                    break;
+                case "aufheben", "get", "g", "a":
+                    System.out.println("Welches Item möchtest du aufheben? [Gebe die Zahl an]");
+                    switch (sc.next()) {
+                        case "1":
+                            s.give(s.ort.get(s.ort.Item1));
+                            break;
+                        case "2":
+                            s.give(s.ort.get(s.ort.Item2));
+                            break;
+                        case "3":
+                            s.give(s.ort.get(s.ort.Item3));
+                            break;
+                        default:
+                            System.out.println("Bitte prüfe deine Eingabe und gebe den Befehl dann erneut ein.");
+                    }
+                default:
+                    if (!s.gehe(in)) System.out.println("Eingabefehler: Bitte Eingabe überprüfen oder 'help' für eine Liste an Befehlen eingeben.");
             }
+
+            if (dead()) return; 
         }
 
-        this.save();
-        System.out.println("Gz; du bist am Ziel!");
-        sc.close();
+    }
 
+    public boolean dead() {
+        return false;
     }
 
     public Ort getOrtById(int id) {
@@ -79,15 +121,6 @@ public class Spiel {
             JSONArray locations = new JSONArray(spiel.get("locations").toString());
             JSONArray inventory = new JSONArray(spiel.get("inventory").toString());
 
-            Orte = new Ort[locations.length()];
-
-            for (int i = 0; i<locations.length(); i++) {
-                JSONObject temp = new JSONObject(locations.get(i).toString());
-                Ort ort = new Ort(temp.getString("beschreibung"), temp.getString("name"), temp.getBoolean("isStart"), temp.getBoolean("isGoal"), false, temp.getInt("id"));
-                
-                Orte[i] = ort;
-            }
-
             items = new Item[inventory.length()];
 
             for (int i = 0; i<inventory.length(); i++) {
@@ -95,6 +128,20 @@ public class Spiel {
                 Item item = new Item(temp.getString("name"), temp.getString("beschreibung"), temp.getInt("id"));
 
                 items[i] = item;
+            }
+
+            Orte = new Ort[locations.length()];
+
+            for (int i = 0; i<locations.length(); i++) {
+                JSONObject temp = new JSONObject(locations.get(i).toString());
+                Ort ort = new Ort(temp.getString("beschreibung"), temp.getString("name"), temp.getBoolean("isStart"), temp.getBoolean("isGoal"), false, temp.getInt("id"));
+                JSONArray ite = new JSONArray(temp.get("items").toString());
+                ort.Item1 = getItemById((int) ite.get(0));
+                ort.Item2 = getItemById((int) ite.get(1));
+                ort.Item3 = getItemById((int) ite.get(2));
+                ort.UnlockItem = getItemById((int) ite.get(3));
+
+                Orte[i] = ort;
             }
 
             JSONObject player = new JSONObject(spiel.get("player").toString());
