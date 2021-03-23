@@ -13,12 +13,23 @@ public class Spieler {
 
     public boolean gehe(String richtung) {
         try {
-            if (ort.getNachbarort(richtung)!=null) {
-                ort = ort.getNachbarort(richtung);
-                return true;
-            } else {
-                return false;
-            }
+            Ort o = ort.getNachbarort(richtung);
+            if (o != null) {
+                if (o.isLocked) {
+                    if (hasItem(o.UnlockItem)) {
+                        remove(o.UnlockItem.id);
+                        o.isLocked = false;
+                        ort = o;
+                        return true;
+                    } else {
+                        System.out.println("Leider fehlt dir noch "+o.UnlockItem.name+" um diesen Ort zu entsperren. Du kannst also nicht hierhin gehen.");
+                        return false;
+                    }
+                } else {
+                    ort = o;
+                    return true;
+                }
+            } else return false;
         } catch (Exception e) {
             return false;
         }
@@ -46,27 +57,27 @@ public class Spieler {
         Scanner sc = new Scanner(System.in);
         switch (sc.next()) {
             case "1":
-                if (this.ort.give(items[0])) {
+                if (ort.give(items[0])) {
                     items[0] = j;
                     break;
                 } 
             case "2":
-                if (this.ort.give(items[1])) {
+                if (ort.give(items[1])) {
                     items[1] = j;
                     break;
                 } 
             case "3":
-                if (this.ort.give(items[2])) {
+                if (ort.give(items[2])) {
                     items[2] = j;
                     break;
                 } 
             case "4":
-                if (this.ort.give(items[3])) {
+                if (ort.give(items[3])) {
                     items[3] = j;
                     break;
                 } 
             case "5":
-                if (this.ort.give(items[4])) {
+                if (ort.give(items[4])) {
                     items[4] = j;
                     break;
                 } 
