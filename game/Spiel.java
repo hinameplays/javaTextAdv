@@ -11,6 +11,7 @@ import game.lib_custom.json.JSONObject;
 import game.lib_custom.json.JSONTokener;
 
 public class Spiel {
+    
     Ort start, ziel;
     Ort[] Orte;
     Item[] items;
