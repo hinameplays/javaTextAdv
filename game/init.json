@@ -1,6 +1,19 @@
 {
     "locations": [
         {
+            "name": "Hafen",
+            "id": 1,
+            "isStart": true,
+            "beschreibung": "b",
+            "items": [
+                null,
+                null,
+                null
+            ],
+            "isGoal": false,
+            "o": 2
+        },
+        {
             "name": "No1",
             "id": 1,
             "isStart": true,
