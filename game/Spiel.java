@@ -17,7 +17,6 @@ public class Spiel {
     Spieler s;
     static File initPath = new File("game\\init.json");
     static File savePath = new File("game\\data.json");
-    static Boolean closeable;
     
 
     public Spiel() {
@@ -27,8 +26,6 @@ public class Spiel {
         } else {
             this.rebuild(initPath);
         }
-
-        closeable = false;
 
     }
 
@@ -77,6 +74,7 @@ public class Spiel {
             JSONObject spiel = new JSONObject(x);
 
             JSONArray locations = new JSONArray(spiel.get("locations").toString());
+            JSONArray inventory = new JSONArray(spiel.get("inventory").toString());
 
             Orte = new Ort[locations.length()];
 
@@ -85,6 +83,15 @@ public class Spiel {
                 Ort ort = new Ort(temp.getString("beschreibung"), temp.getString("name"), temp.getBoolean("isStart"), temp.getBoolean("isGoal"), temp.getBoolean("isLocked"), temp.getInt("id"));
                 
                 Orte[i] = ort;
+            }
+
+            items = new Item[inventory.length()];
+
+            for (int i = 0; i<inventory.length(); i++) {
+                JSONObject temp = new JSONObject(inventory.get(i).toString());
+                Item item = new Item(temp.getString("name"), temp.getString("beschreibung"), temp.getInt("id"));
+
+                items[i] = item;
             }
 
             JSONObject player = new JSONObject(spiel.get("player").toString());
@@ -105,6 +112,7 @@ public class Spiel {
             file = new FileWriter(savePath);
 
             JSONArray locations = new JSONArray();
+            JSONArray inventory = new JSONArray();
 
             for (Ort o: Orte) {
                 JSONObject temp = new JSONObject(o);
@@ -124,27 +132,30 @@ public class Spiel {
                 locations.put(temp);                
             }
 
-            JSONObject player = new JSONObject();
+            for (Item i : items) {
+                JSONObject temp = new JSONObject();
+                temp.put("id", i.id);
+                temp.put("name", i.name);
+                temp.put("beschreibung", i.beschreibung);
 
-            Item[] t = Spieler.items;
+                inventory.put(temp);
+            }
+
+            JSONObject player = new JSONObject();
             player.put("location", (Spieler.ort != null ? Spieler.ort.id : null));
-            player.put("items", new JSONArray(t));
             
             JSONObject spiel = new JSONObject();
             spiel.put("player", player);
             spiel.put("locations", locations);
+            spiel.put("inventory", inventory);
 
             spiel.write(file, 4, 0);
 
             file.flush();
             file.close();
-            
-            closeable = true;
+
         } catch (Exception e) {
-            
-            System.out.println(e);
-            
-            closeable = false;
+            System.out.println(e);  
         }         
     }
 }
