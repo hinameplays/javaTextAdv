@@ -54,8 +54,4 @@ public class Ort {
                 return null;
         }
     }
-
-    public String Beschreibung() {
-        return beschreibung;
-    }
 }

@@ -22,17 +22,14 @@ public class Spiel {
     public Spiel() {
 
         if (savePath.exists()) {
-            this.rebuild(initPath);
+            this.rebuild(savePath);
         } else {
             this.rebuild(initPath);
         }
-        Item[] temp = {new Item("n", "b", 1)};
-        items = temp;
-        this.save();
 
     }
 
-    public void spielen() {
+    public void spielen() { // TODO rework spielen method
 
         Scanner sc = new Scanner(System.in);
 
