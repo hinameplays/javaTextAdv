@@ -4,18 +4,10 @@
 
 |No| Ziel | Status|
 ---|---|---
-1|Ziel/Gesamte Roadmap|nicht erreicht|
+1|Ziel/Gesamte Roadmap|teilweise erreicht|
 2|unabdingbare Pflichten|erreicht|
-3|Erweiterungen|nicht erreicht|
-4|Zusatzfeatures (nice-to-have)|nicht implementiert|  
-
-## **Roadmap**
-
-|No| Ziel | Status|
----|---|---
-1|Implementation der Base-Features vom AB| Done
-2|Implementation einer JSON-Klasse| Pending
-3|
+3|Erweiterungen|erreicht|
+4|Zusatzfeatures (nice-to-have)|zum Teil implementiert|  
 
 ### **Ziel**
 
@@ -25,25 +17,27 @@ Schaffen eines in der Konsole laufenden ("Text-") Adventures mithilfe von Java. 
 
 - Spiel muss funktionales Ziel haben  (Win Condition) (done)
 
-- eine funktionale Progression muss existieren  (überarbeitbar)
+- eine funktionale Progression muss existieren  (done)
 
   - verknüpfte Orte
 
-  - Quests
+  - Quests (i.e. erhalten von items)
 
-- Spiel muss intuitiv erschließbar sein  (yeah no)
+- Spiel muss intuitiv erschließbar sein  (nach Aussage meines kleinen Bruders und eines Freundes ist das Interface verständlich, allerdings spielen beide gerne ähnlich aufgebaute Spiele)
 
   - einfach nicht zu kompliziert machen
 
 ### Erweiterungen
 
-- content aus datei lesen + Savegames
+- content aus datei lesen + Savegames (done)
 
-- Parser
+- Parser (aus scanner erweitert) (haha switch go brrrrr)
 
-- commands (as in man; help; $)  
+- commands (as in man; help; $) (implementiert)
 
-- ingame-Dokumentation
+- ingame-Dokumentation (help-command zählt so halb)
+
+- einfaches moddingsystem (bearbeiten einer JSON) (done)
 
 ### nice-to-have
 
@@ -51,8 +45,10 @@ Schaffen eines in der Konsole laufenden ("Text-") Adventures mithilfe von Java. 
 
 - UI in Textinterface (Grafikoutput über basically Ascii-Art)
 
-- gute Story :P
+  - minimap
 
-- minimap
+- gute Story :P (so halb)
 
-- intel & inventory system  
+- intel & inventory system (funzt)
+
+Insgesamt habe ich das ganze Spiel manuell auf Fehler geprüft. Da alle Klassen eigentlich verwendet werden und relativ fehlersicher gebaut sind, sollten keine Probleme entstehen. Das Spiel wurde unter Win10 und Linux mit OpenJDK getestet und funktioniert dort. Bei Kompabilitätsproblemen bitte einfach schreiben.
