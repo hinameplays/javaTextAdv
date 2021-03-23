@@ -22,10 +22,13 @@ public class Spiel {
     public Spiel() {
 
         if (savePath.exists()) {
-            this.rebuild(savePath);
+            this.rebuild(initPath);
         } else {
             this.rebuild(initPath);
         }
+        Item[] temp = {new Item("n", "b", 1)};
+        items = temp;
+        this.save();
 
     }
 
@@ -49,6 +52,7 @@ public class Spiel {
 
     public Ort getOrtById(int id) {
         
+        if (id == 0) return null;
         for (Ort o : Orte) {
             if (o.id == id) return o;
         }
@@ -58,6 +62,7 @@ public class Spiel {
 
     public Item getItemById(int id) {
         
+        if (id == 0) return null;
         for (Item i : items) {
             if (i.id == id) return i;
         }
@@ -80,7 +85,7 @@ public class Spiel {
 
             for (int i = 0; i<locations.length(); i++) {
                 JSONObject temp = new JSONObject(locations.get(i).toString());
-                Ort ort = new Ort(temp.getString("beschreibung"), temp.getString("name"), temp.getBoolean("isStart"), temp.getBoolean("isGoal"), temp.getBoolean("isLocked"), temp.getInt("id"));
+                Ort ort = new Ort(temp.getString("beschreibung"), temp.getString("name"), temp.getBoolean("isStart"), temp.getBoolean("isGoal"), false, temp.getInt("id"));
                 
                 Orte[i] = ort;
             }
@@ -119,14 +124,14 @@ public class Spiel {
                 temp.put("id", o.id);
                 temp.put("name", o.name);
                 temp.put("beschreibung", o.beschreibung);
-                temp.put("l", (o.l != null ? o.l.id : null));
-                temp.put("r", (o.r != null ? o.r.id : null));
-                temp.put("o", (o.o != null ? o.o.id : null));
-                temp.put("u", (o.u != null ? o.u.id : null));
+                temp.put("l", (o.l != null ? o.l.id : 0));
+                temp.put("r", (o.r != null ? o.r.id : 0));
+                temp.put("o", (o.o != null ? o.o.id : 0));
+                temp.put("u", (o.u != null ? o.u.id : 0));
                 temp.put("isStart", o.isStart);
                 temp.put("isGoal", o.isGoal);
                 temp.put("isLocked", o.isLocked);
-                int[] t = {o.Item1 != null ? o.Item1.id : null, o.Item2 != null ? o.Item2.id : null, o.Item3 != null ? o.Item3.id : null,o.UnlockItem != null ? o.UnlockItem.id : null};
+                int[] t = {o.Item1 != null ? o.Item1.id : 0, o.Item2 != null ? o.Item2.id : 0, o.Item3 != null ? o.Item3.id : 0, o.UnlockItem != null ? o.UnlockItem.id : 0};
                 temp.put("items", new JSONArray(t));
 
                 locations.put(temp);                
@@ -142,7 +147,9 @@ public class Spiel {
             }
 
             JSONObject player = new JSONObject();
-            player.put("location", (Spieler.ort != null ? Spieler.ort.id : null));
+            player.put("location", (s.ort != null ? s.ort.id : 0));
+            int[] t = {s.items[0] != null ? s.items[0].id : 0, s.items[1] != null ? s.items[1].id : 0, s.items[2] != null ? s.items[2].id : 0, s.items[3] != null ? s.items[3].id : 0, s.items[4] != null ? s.items[4].id : 0};
+            player.put("items", new JSONArray(t));
             
             JSONObject spiel = new JSONObject();
             spiel.put("player", player);
@@ -156,6 +163,7 @@ public class Spiel {
 
         } catch (Exception e) {
             System.out.println(e);  
+            e.printStackTrace();
         }         
     }
 }

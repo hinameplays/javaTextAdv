@@ -1,38 +1,70 @@
 {
     "locations": [
         {
-            "name": "No1",
+            "r": 0,
+            "u": 0,
+            "name": "b",
             "id": 1,
             "isStart": true,
-            "beschreibung": "b",
+            "l": 0,
+            "beschreibung": "Hafen",
             "items": [
-                null,
-                null,
-                null
+                0,
+                0,
+                0,
+                0
             ],
-            "isGoal": false
+            "isGoal": false,
+            "o": 0
         },
         {
-            "name": "No2",
+            "r": 0,
+            "u": 0,
+            "name": "b",
+            "id": 1,
+            "isStart": true,
+            "l": 0,
+            "beschreibung": "No1",
+            "items": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "isGoal": false,
+            "o": 0
+        },
+        {
+            "r": 0,
+            "u": 0,
+            "name": "B",
             "id": 2,
             "isStart": false,
-            "beschreibung": "B",
+            "l": 0,
+            "beschreibung": "No2",
             "items": [
-                null,
-                null,
-                null
+                0,
+                0,
+                0,
+                0
             ],
-            "isGoal": true
+            "isGoal": true,
+            "o": 0
         }
     ],
+    "inventory": [{
+        "name": "n",
+        "id": 1,
+        "beschreibung": "b"
+    }],
     "player": {
         "location": 2,
         "items": [
-            null,
-            null,
-            null,
-            null,
-            null
+            0,
+            0,
+            0,
+            0,
+            0
         ]
     }
 }
