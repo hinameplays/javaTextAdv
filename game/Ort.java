@@ -55,6 +55,14 @@ public class Ort {
         }
     }
 
+    public void printOptions() {
+        System.out.println("Von hieraus gibt es Wege nach: ");
+        if (getNachbarort("o")!=null) System.out.println("Oben: "+getNachbarort("o").name);
+        if (getNachbarort("r")!=null) System.out.println("Rechts: "+getNachbarort("r").name);
+        if (getNachbarort("l")!=null) System.out.println("Links: "+getNachbarort("l").name);
+        if (getNachbarort("u")!=null) System.out.println("Unten: "+getNachbarort("u").name+"\n");
+    }
+
     public Boolean give(Item j) {
         if (Item1 == null) {
             Item1 = j; 

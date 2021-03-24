@@ -17,7 +17,7 @@ public class Spiel {
     Item[] items;
     Spieler s;
     static File initPath = new File("game\\init.json");
-    static File savePath = new File("game\\data.json");
+    static File savePath = new File("game\\save.json");
     
 
     public Spiel() {
@@ -45,9 +45,10 @@ public class Spiel {
             System.out.println("Du befindest dich hier: "+ o.name+".");
             System.out.println(o.beschreibung+"\n");
             System.out.println("Hier gibt es folgende Items:");
-            System.out.println("1: "+(o.Item1 != null ? o.Item1.name : "Nichts"));
-            System.out.println("2: "+(o.Item2 != null ? o.Item2.name : "Nichts"));
-            System.out.println("3: "+(o.Item3 != null ? o.Item3.name : "Nichts")+"\n");
+            System.out.println("1: "+(o.Item1 != null ? o.Item1.name+"\n"+o.Item1.beschreibung : "Nichts"));
+            System.out.println("2: "+(o.Item2 != null ? o.Item2.name+"\n"+o.Item2.beschreibung : "Nichts"));
+            System.out.println("3: "+(o.Item3 != null ? o.Item3.name+"\n"+o.Item3.beschreibung : "Nichts")+"\n");
+            o.printOptions();
             System.out.println("Was möchtest du jetzt tun?\n");
 
             String in = sc.next();
@@ -58,12 +59,12 @@ public class Spiel {
                 case "save", "Save", "s", "S":
                     this.save();
                     break;
-                case "items", "List", "l", "i":
+                case "items", "List", "i", "list":
                     s.printInventory();
                     break;
                 case "help", "h", "/help", "/h", "Help", "H", "Hilfe":
                     System.out.println("Liste der möglichen Befehle:\n");
-                    System.out.println("'h, Hilfe': Diese Hilfe anzeigen \n'e, Exit': Spiel verlassen \n's, Save': speichern\n'i, List': Items aufzählen\n'g, get': Item aufheben\n'Oben, o/ Rechts, r/ Links, l/ Unten, u': In Richtung gehen\n");
+                    System.out.println("'h, Hilfe': Diese Hilfe anzeigen \n'e, Exit': Spiel verlassen \n's, Save': speichern\n'i, items, List': Items aufzählen\n'g, get': Item aufheben\n'Oben, o/ Rechts, r/ Links, l/ Unten, u': In Richtung gehen\n");
                     break;
                 case "aufheben", "get", "g", "a":
                     System.out.println("Welches Item möchtest du aufheben? [Gebe die Zahl an]");
@@ -94,15 +95,43 @@ public class Spiel {
                     if (!s.gehe(in)) System.out.println("Eingabefehler: Bitte Eingabe überprüfen oder 'help' für eine Liste an Befehlen eingeben.");
             }
 
-            if (dead()) return; 
+            if (dead()) {
+                sc.close();
+                System.out.println("Du bist gestorben. Starte das Spiel neu, um vom letzten Sicherungspunkt aus weiter zu spielen.");
+                return; 
+            }
         }
 
         sc.close();
-        System.out.println("Herzlichen Glückwunsch, du bist am Ziel!");
+        System.out.println("Herzlichen Glückwunsch, du bist am Ziel! Das Spiel wird sich jetzt automatisch resetten.");
+        rebuild(initPath);
+        save();
 
     }
 
     public boolean dead() {
+        if (s.ort == getOrtById(1)) {
+            System.out.println("Dachtest du wirklich, es sei eine gute Idee einfach so ins Wasser zu springen?");
+            return true;
+        } 
+        if (s.ort == getOrtById(4)) {
+            System.out.println("Dein mulmiges Gefühl bei dieser verlassenen Plattform trügt nicht, dort drüben liegt ne Leiche.");
+            System.out.println("Plötzlich kommt ein ärmlich aussehender Mann mit einer SKS um die Ecke und schreit dich an.");
+            if(s.hasItem(getItemById(3))) {
+                System.out.println("Du hast den schnelleren Finger. Dein gegenüber ist tot. Vor Verzweiflung legst du die Waffe nieder und verlässt den Ort.");
+                s.remove(3);
+                s.ort = getOrtById(3);
+                getOrtById(4).isLocked = true;
+                return false;
+            } else {
+                System.out.println("Du bist wehrlos. Du siehst deinen eigenen Fall noch, hörst aber schon den Schuss nicht mehr: Du wurdest erschossen.");
+                return true;
+            }
+        }
+        if (s.ort == getOrtById(7)) {
+            System.out.println("Vorsichtig schleichst du dich in die Fabrik. Plötzlich wirst du von einer Gruppe patrolierender Privater Militärdienstleister überwältigt. \nNicht sehr viel später erkennst du, woher die Geräusche kamen: Vor dir wurden schon einige andere Wesen aufgegriffen.\nGemeinsam mit anderen Menschen, Akten und Tieren wirst unter hohnischem Gelächter in ein brennendes Loch geworfen...");
+            return true;
+        }
         return false;
     }
 
@@ -150,7 +179,11 @@ public class Spiel {
 
             for (int i = 0; i<locations.length(); i++) {
                 JSONObject temp = new JSONObject(locations.get(i).toString());
-                Ort ort = new Ort(temp.getString("beschreibung"), temp.getString("name"), temp.getBoolean("isStart"), temp.getBoolean("isGoal"), false, temp.getInt("id"));           
+
+                String na = temp.getString("name");
+                String bes = temp.getString("beschreibung");
+                
+                Ort ort = new Ort(na, bes, temp.getBoolean("isStart"), temp.getBoolean("isGoal"), false, temp.getInt("id"));           
 
                 Orte[i] = ort;
             }
@@ -196,7 +229,7 @@ public class Spiel {
             JSONArray inventory = new JSONArray();
 
             for (Ort o: Orte) {
-                JSONObject temp = new JSONObject(o);
+                JSONObject temp = new JSONObject();
                 temp.put("id", o.id);
                 temp.put("name", o.name);
                 temp.put("beschreibung", o.beschreibung);
