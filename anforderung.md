@@ -52,3 +52,20 @@ Schaffen eines in der Konsole laufenden ("Text-") Adventures mithilfe von Java. 
 - intel & inventory system (funzt)
 
 Insgesamt habe ich das ganze Spiel manuell auf Fehler geprüft. Da alle Klassen eigentlich verwendet werden und relativ fehlersicher gebaut sind, sollten keine Probleme entstehen. Das Spiel wurde unter Win10 und Linux mit OpenJDK getestet und funktioniert dort. Bei Kompabilitätsproblemen bitte einfach schreiben.
+
+### zur Dateistruktur
+
+Das Programm setzt sich wie folgt zusammen:  
+adventure:  
+
+ß  +anforderung (Anforderungsanalyse)  
+ß  +Main.java (Hauptdatei)
+ß  +README.md (Markdowndatei für Readme)  
+ß  +game:  
+ßß    +init.json (Quelldatei für content)  
+ßß    + *.java (bekannte Javadateien aud Aufgabe)  
+ßß    +lib_custom:
+ßßß      +save_backup.json (Backup für story)  
+ßßß      +json:  
+ßßßß       +jsonbibliothek (modifizierte Quelldateien)  
+ßßß      +Render (testklassen für Erweiterungen)  
