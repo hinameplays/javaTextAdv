@@ -17,8 +17,8 @@ public class Spiel {
     Item[] items;   // globales permanentes Array aller Items
     Spieler s;
     int winCount;   // Anzahl der Siege, persistent
-    static File initPath = new File("game\\init.json");     // Quellcode für Content
-    static File savePath = new File("game\\save.json");     // gespeicherte Spielstände
+    static File initPath = new File("game/init.json");     // Quellcode für Content
+    static File savePath = new File("game/save.json");     // gespeicherte Spielstände
     
 
     public Spiel() {
