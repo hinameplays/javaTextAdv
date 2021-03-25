@@ -1,0 +1,205 @@
+{
+    "winCount" : 0,
+    
+    "locations": [
+        {
+            "r": 0,
+            "u": 0,
+            "isLocked": false,
+            "name": "Meer",
+            "id": 1,
+            "isStart": false,
+            "l": 0,
+            "beschreibung": "Das offene Meer...trügerisch schön!",
+            "items": [
+                1,
+                0,
+                0,
+                0
+            ],
+            "isGoal": false,
+            "o": 2
+        },
+        {
+            "r": 0,
+            "u": 1,
+            "isLocked": false,
+            "name": "Hafen",
+            "id": 2,
+            "isStart": true,
+            "l": 0,
+            "beschreibung": "Hier bist du also gelandet: Ein Hafen in Norvinsk.",
+            "items": [
+                5,
+                0,
+                0,
+                0
+            ],
+            "isGoal": false,
+            "o": 3
+        },
+        {
+            "r": 8,
+            "u": 2,
+            "isLocked": true,
+            "name": "Bahnhof",
+            "id": 3,
+            "isStart": false,
+            "l": 4,
+            "beschreibung": "Für einen Bahnhof sind hier erstaunlich wenige Menschen unterwegs, nur ca. ein Dutzend, alle scheinen sich vor dir zu fürchten.",
+            "items": [
+                0,
+                0,
+                0,
+                5
+            ],
+            "isGoal": false,
+            "o": 5
+        },
+        {
+            "r": 3,
+            "u": 0,
+            "isLocked": false,
+            "name": "Alte Plattform",
+            "id": 4,
+            "isStart": false,
+            "l": 0,
+            "beschreibung": "Ziemlich dunkel und verfallen, hier scheint etwas explodiert zu sein.",
+            "items": [
+                0,
+                0,
+                0,
+                3
+            ],
+            "isGoal": false,
+            "o": 0
+        },
+        {
+            "r": 7,
+            "u": 3,
+            "isLocked": false,
+            "name": "Hauptstraße",
+            "id": 5,
+            "isStart": false,
+            "l": 0,
+            "beschreibung": "Dies ist die einstige Hauptstraße dieser Stadt.",
+            "items": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "isGoal": false,
+            "o": 6
+        },
+        {
+            "r": 0,
+            "u": 5,
+            "isLocked": false,
+            "name": "Prapor",
+            "id": 6,
+            "isStart": false,
+            "l": 0,
+            "beschreibung": "Ein Einheimischer erklärt dir in gebrochenem Englisch, dass du schnell von hier weg musst. Er deutet auf zwei Items in der Zimmerecke.",
+            "items": [
+                2,
+                3,
+                0,
+                0
+            ],
+            "isGoal": false,
+            "o": 0
+        },
+        {
+            "r": 0,
+            "u": 0,
+            "isLocked": false,
+            "name": "Terragroup Labs PLC",
+            "id": 7,
+            "isStart": false,
+            "l": 5,
+            "beschreibung": "Eine komische Fabrik. Sie scheint zu brennen und komische Geräusche, ein Kratzen und Scharren, kommen aus ihr...",
+            "items": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "isGoal": false,
+            "o": 0
+        },
+        {
+            "r": 9,
+            "u": 0,
+            "isLocked": true,
+            "name": "Flughafen",
+            "id": 8,
+            "isStart": false,
+            "l": 3,
+            "beschreibung": "Wenigstens das scheint noch zu funktionieren. Hier gibt es immerhin russische Sicherheitskräfte, die den Flughafen vor Angriffen schützen.",
+            "items": [
+                4,
+                0,
+                0,
+                2
+            ],
+            "isGoal": false,
+            "o": 0
+        },
+        {
+            "r": 0,
+            "u": 0,
+            "isLocked": false,
+            "name": "Flugzeug",
+            "id": 9,
+            "isStart": false,
+            "l": 8,
+            "beschreibung": "Ein ziemlich klappriges veraltetes Teil, aber es bringt dich nach Moskau. Von hier aus bist du frei, lass dich am besten nicht nochmal auf so einen Trip ein!",
+            "items": [
+                0,
+                0,
+                0,
+                4
+            ],
+            "isGoal": true,
+            "o": 0
+        }
+    ],
+    "inventory": [
+        {
+            "name": "Haie",
+            "id": 1,
+            "beschreibung": "Eigentlich sind sie recht friedlich, sind ja auch nur Katzenhaie."
+        },
+        {
+            "name": "Verrosteter Schlüssel",
+            "id": 2,
+            "beschreibung": "Ein verrosteter Schlüssel. Anscheinend sowjetischer Machart. Er scheint zur Draisine am Bahnhof zu passen."
+        },
+        {
+            "name": "AS-VAL",
+            "id": 3,
+            "beschreibung": "Eine AS-VAL zusammen mit einem vollen Magazin SP6. Prapor scheint es wirklich gut mit dir zu meinen."
+        },
+        {
+            "name": "Ausreiseerlaubnis",
+            "id": 4,
+            "beschreibung": "Die Überzeugungskraft, die vonnöten ist, um den netten Russen den abzuluchsen..."
+        },
+        {
+            "name": "Dieselameise",
+            "id": 5,
+            "beschreibung": "Dieses Stück sowjetische Ingenieurskunst ist nicht schön oder effizient, aber es funktioniert und kann dich schneller befördern."
+        }
+    ],
+    "player": {
+        "location": 2,
+        "items": [
+            0,
+            0,
+            0,
+            0,
+            0
+        ]
+    }
+}
